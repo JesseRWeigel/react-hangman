@@ -8,7 +8,7 @@ const App = () => {
   const [guess, setGuess] = useState('');
   const [guesses, setGuesses] = useState([]);
   const [wordArr, setWordArr] = useReducer(reducer, []);
-  const [score, setScore] = useState(10);
+  const [score, setScore] = useState(0);
   const [win, setWin] = useState(false);
 
   function reducer(state = [], action) {
@@ -33,7 +33,7 @@ const App = () => {
       });
       if (falseGuess) {
         setGuesses([...guesses, ...guess]);
-        setScore(score - 1);
+        setScore(score + 1);
       }
     }
     checkForWin();
@@ -56,7 +56,7 @@ const App = () => {
       .split('')
       .forEach(letter => wordArray.push({ letter: letter, guessed: false }));
     setWordArr({ data: wordArray, type: 'update' });
-    setScore(10);
+    setScore(0);
     setGuesses([]);
     setWin(false);
   };
@@ -65,8 +65,8 @@ const App = () => {
     <div className="App">
       <div className="container">
         <h1 style={styles.heading}>React Hangman</h1>
-        <span style={styles.guesses}>Guesses left: {score}</span>
-        {score > 0 ? (
+        <span style={styles.guesses}>Guesses left: {10 - score}</span>
+        {score < 10 ? (
           win ? (
             <div>
               <span>Congratulations! You Won!</span>
