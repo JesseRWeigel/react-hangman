@@ -64,7 +64,8 @@ const App = () => {
   return (
     <div className="App">
       <div className="container">
-        <h1>React Hangman</h1>
+        <h1 style={styles.heading}>React Hangman</h1>
+        <span style={styles.guesses}>Guesses left: {score}</span>
         {score > 0 ? (
           win ? (
             <div>
@@ -113,6 +114,13 @@ const App = () => {
 };
 
 const styles = {
+  heading: {
+    marginBottom: '8px',
+  },
+  guesses: {
+    display: 'block',
+    marginBottom: '8px',
+  },
   word: {
     fontSize: '50px',
   },
